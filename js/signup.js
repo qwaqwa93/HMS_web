@@ -7,7 +7,7 @@ $( document ).ready(function() {
 		var email = document.getElementById('input-id').value;
 		var password = document.getElementById('input-passwd').value;
 		var name = document.getElementById('input-name').value;
-		firebase.database().ref("usernames/" + email.replace(".","^")).set({
+		firebase.database().ref("usernames/" + email.replace(/./gi,"^")).set({
 			name: name
 		});
 		firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user){
