@@ -1,4 +1,12 @@
 $(document).ready(function() {
+	firebase.auth().onAuthStateChanged(function(user) {
+  	if (user) {
+    	// User is signed in.
+  	} else {
+    	// No user is signed in.
+    	window.location.href = "login.html";
+  	}});
+
 	$('#main-image').mouseover(function(e) {
 		$(".hover-effect").removeClass("hov");     
     	$(e.target).addClass("hov");
@@ -10,15 +18,16 @@ $(document).ready(function() {
 	});
 
 	$('#button-logout').click(function(e) {
-		window.location.href = 'login.html'
 		firebase.auth().signOut().then(function() {
  	 	// Sign-out successful.
+		window.location.href = 'login.html'
 		}, function(error) {
   		// An error happened.
+			window.location.href = 'login.html'
   			alert("이미 로그아웃 되어있습니다")
 		});
 	})
-
+/*
 	$(window).on("beforeunload", function() { 
 		firebase.auth().signOut().then(function() {
  	 	// Sign-out successful.
@@ -26,4 +35,5 @@ $(document).ready(function() {
   		// An error happened.
 		});
 	});
+	*/
 })
