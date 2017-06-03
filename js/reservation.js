@@ -4,7 +4,7 @@ $(document).ready(function() {
     	// User is signed in.
   	} else {
     	// No user is signed in.
-    	window.location.href("login.html");
+    	window.location.href = "login.html";
   	}});
 
 	$('#from-date').datepicker({ 
