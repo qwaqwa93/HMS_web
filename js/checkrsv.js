@@ -1,6 +1,6 @@
 var numRoom = 0;
 var rooms = [];
-roomnames = ["다현방", "쯔위방", "나연방", "사나방"];
+roomnames = ["나연방", "사나방","다현방", "쯔위방"];
 $(document).ready(function() {
 	firebase.auth().onAuthStateChanged(function(user) {
   	if (user) {
