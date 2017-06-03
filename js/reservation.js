@@ -45,6 +45,10 @@ $(document).ready(function() {
       }
   }
 
+  firebase.database().ref("reservation").on('value', function(snapshot) {
+    checkValid();
+  })
+
     reserveBtn0.onclick = function() {
       makeReserve("0");
     }
