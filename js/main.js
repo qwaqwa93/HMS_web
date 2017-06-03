@@ -8,4 +8,12 @@ $(document).ready(function() {
     	$(this).removeClass("hov");
     	$("#main-image").css('opacity', 1);
 	});
+	$('#button-logout').click(function(e) {
+		window.location.href = 'login.html'
+		firebase.auth().signOut().then(function() {
+ 	 	// Sign-out successful.
+		}, function(error) {
+  		// An error happened.
+		});
+	})
 })

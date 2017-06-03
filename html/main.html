@@ -23,7 +23,7 @@
       <ul class="nav navbar-nav">
         <li><a href="reservation.html">예약하기 <span class="sr-only">(current)</span></a></li>
         <li><a href="checkrsv.html">내 예약 확인</a></li>
-        <li><a href="login.html">로그 아웃</a></li>
+        <li><a id="button-logout" style="cursor: pointer;">로그 아웃</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -31,6 +31,16 @@
   	<img src="../image/home.jpg" width=100% height=auto>
   	</div>
 	</nav>
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+  <script>
+    var config = {
+          apiKey: "AIzaSyA5hQ5iolrGfRMgLkOcCsiT7raXDWj8Mio",
+          authDomain: "twicenayeonhms.firebaseapp.com",
+          databaseURL: "https://twicenayeonhms.firebaseio.com",
+          storageBucket: "gs://twicenayeonhms.appspot.com"
+    };
+    firebase.initializeApp(config);
+  </script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<script src="../js/main.js"></script>
 	</body>

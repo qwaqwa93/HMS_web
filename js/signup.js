@@ -1,7 +1,6 @@
 $( document ).ready(function() { 
 
 	var signupBtn = document.getElementById('button-signup');
-	var 
 
 	signupBtn.onclick = function() {
 		var email = document.getElementById('input-id').value;
@@ -15,7 +14,13 @@ $( document ).ready(function() {
   			var errorCode = error.code;
   			var errorMessage = error.message;
   			if (errorCode == 'auth/invalid-email') {
-  				alert("Enter a valid email");
+  				alert("이메일이 형식에 맞지 않습니다");
+  			}
+  			else if(errorCode == 'auth/weak-password') {
+  				alert("6자리보다 긴 비밀번호를 입력해 주세요")
+  			}
+  			else {
+  				console.log(errorCode);
   			}
   			// ...
 		});
