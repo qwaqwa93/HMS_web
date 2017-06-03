@@ -27,13 +27,21 @@ $(document).ready(function() {
         alert("체크인 / 체크아웃 날짜를 선택하셈")
       }
       else{
-          var new_data_type = changeDateForm(fromd.value,tod.value);
-          var newkey = firebase.database().ref("reservation/" + userid.replace(/\./gi, "^")).push().key;
-          firebase.database().ref("reservation/" + userid.replace(/\./gi, "^") + "/" + newkey).set({
-            roomNo:roomNum,
-            fromDate:new_data_type[0],
-            toDate:new_data_type[1]
-          })
+      	  if(confirm("결제 하시겠습니까?")){
+	          var new_data_type = changeDateForm(fromd.value,tod.value);
+	          var newkey = firebase.database().ref("reservation/" + userid.replace(/\./gi, "^")).push().key;
+	          firebase.database().ref("reservation/" + userid.replace(/\./gi, "^") + "/" + newkey).set({
+	            roomNo:roomNum,
+	            fromDate:new_data_type[0],
+	            toDate:new_data_type[1]
+	          })
+	          alert("예약이 완료되었습니다"); 
+				window.location.href = 'checkrsv.html'
+
+      	  }
+      	  else{
+
+      	  }
       }
   }
 
@@ -62,6 +70,10 @@ $(document).ready(function() {
     var f_date = "";
     var t_date = "";
 
+
+
+
+
     function checkValid(){
       if((f_date != "") && (t_date != "")){
           var from_parts = f_date.split("/");
@@ -69,10 +81,37 @@ $(document).ready(function() {
           var f_dat = new Date(from_parts[2],from_parts[0]-1,from_parts[1]);
           var t_dat = new Date(to_parts[2],to_parts[0]-1,to_parts[1]);
 
+          var from_date_picked = from_parts[2] + from_parts[0] + from_parts[1];
+          var to_date_picked = to_parts[2] + to_parts[0] + to_parts[1]
+
           if(f_dat > t_dat){
             alert("체크아웃 날짜가 체크인 날짜보다는 뒤여야지 않겠니?");
             return false;
-          return true;
+          }
+          else{
+          	var room_state = [true, true, true, true];
+
+          	firebase.database().ref("reservation").once("value",function(snap){
+          		snap.forEach(function(userSnap){
+          			userSnap.forEach(function(roomSnap){
+          				let room = roomSnap.val();
+
+          				var from_date_db = room.fromDate;
+          				var to_date_db = room.toDate;
+          				var roomNum = room.roomNo*1;
+
+          				if( (from_date_db.localeCompare(to_date_picked) <= 0) && (from_date_picked.localeCompare(to_date_db) <= 0) ){
+          					room_state[roomNum] = false;
+          				}
+          			});
+          		});
+			  $('#button-reserve0').attr("disabled",!room_state[0]);
+			  $('#button-reserve1').attr("disabled",!room_state[1]);
+			  $('#button-reserve2').attr("disabled",!room_state[2]);
+			  $('#button-reserve3').attr("disabled",!room_state[3]);
+          	});
+
+
           }
       }
       return true;
@@ -85,6 +124,9 @@ $(document).ready(function() {
       pickTime : false,
       defalutDate : new Date()
     }).on('changeDate', function (selected) {
+    	f_date = this.value;
+
+    	checkValid();
         var minDate = new Date(selected.date.valueOf());
         $('#to-date').datepicker('setStartDate', minDate);
     });
@@ -94,6 +136,8 @@ $(document).ready(function() {
       pickTime : false, 
       defalutDate : new Date() 
    }).on('changeDate', function (selected) {
+    	t_date = this.value;
+    	checkValid();
         var maxDate = new Date(selected.date.valueOf());
         $('#from-date').datepicker('setEndDate', maxDate);
     });

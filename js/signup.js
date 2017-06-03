@@ -7,9 +7,6 @@ $( document ).ready(function() {
 		var email = document.getElementById('input-id').value;
 		var password = document.getElementById('input-passwd').value;
 		var name = document.getElementById('input-name').value;
-		firebase.database().ref("usernames/" + email.replace(/./gi,"^")).set({
-			name: name
-		});
 		firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user){
 			alert("성공적으로 가입되었습니다");
 			window.location.href = 'login.html';
@@ -17,7 +14,6 @@ $( document ).ready(function() {
   			// Handle Errors here.
   			var errorCode = error.code;
   			var errorMessage = error.message;
-  			firebase.database().ref("usernames/" + email.replace(".","^")).set(null);
   			if (errorCode == 'auth/invalid-email') {
   				alert("이메일이 형식에 맞지 않습니다");
   			}
