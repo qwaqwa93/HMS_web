@@ -36,5 +36,17 @@ $( document ).ready(function() {
         // No user is signed in.
       }
   });
+
+  $('#input-passwd').keyup(function(e) {
+    if(e.keyCode == 13) {
+      $('#button-login').click();
+    }
+  })
+  
+  $('#input-id').keyup(function(e) {
+    if(e.keyCode == 13) {
+      $('#button-login').click();
+    }
+  })
 })
 	

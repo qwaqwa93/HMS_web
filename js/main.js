@@ -8,6 +8,7 @@ $(document).ready(function() {
     	$(this).removeClass("hov");
     	$("#main-image").css('opacity', 1);
 	});
+
 	$('#button-logout').click(function(e) {
 		window.location.href = 'login.html'
 		firebase.auth().signOut().then(function() {
@@ -17,4 +18,12 @@ $(document).ready(function() {
   			alert("이미 로그아웃 되어있습니다")
 		});
 	})
+
+	$(window).on("beforeunload", function() { 
+		firebase.auth().signOut().then(function() {
+ 	 	// Sign-out successful.
+		}, function(error) {
+  		// An error happened.
+		});
+	});
 })
