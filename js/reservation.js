@@ -28,15 +28,21 @@ $(document).ready(function() {
       }
       else{
       	  if(confirm("결제 하시겠습니까?")){
-	          var new_data_type = changeDateForm(fromd.value,tod.value);
-	          var newkey = firebase.database().ref("reservation/" + userid.replace(/\./gi, "^")).push().key;
-	          firebase.database().ref("reservation/" + userid.replace(/\./gi, "^") + "/" + newkey).set({
-	            roomNo:roomNum,
-	            fromDate:new_data_type[0],
-	            toDate:new_data_type[1]
-	          })
-	          alert("예약이 완료되었습니다"); 
-				window.location.href = 'checkrsv.html'
+      	  	var result = checkValid();
+      	  	  if(result[roomNum*1]){
+		          var new_data_type = changeDateForm(fromd.value,tod.value);
+		          var newkey = firebase.database().ref("reservation/" + userid.replace(/\./gi, "^")).push().key;
+		          firebase.database().ref("reservation/" + userid.replace(/\./gi, "^") + "/" + newkey).set({
+		            roomNo:roomNum,
+		            fromDate:new_data_type[0],
+		            toDate:new_data_type[1]
+		          })
+		          alert("예약이 완료되었습니다"); 
+					window.location.href = 'checkrsv.html'
+      	  	  }
+      	  	  else{
+      	  	  	alert("아쉽지만 다음 기회에~");
+      	  	  }
 
       	  }
       	  else{
@@ -118,7 +124,7 @@ $(document).ready(function() {
 
           }
       }
-      return true;
+      return room_state;
     }
 
   $('#from-date').datepicker('setStartDate', new Date());
