@@ -5,9 +5,12 @@ $( document ).ready(function() {
 	signupBtn.onclick = function() {
 		var email = document.getElementById('input-id').value;
 		var password = document.getElementById('input-passwd').value;
-		
+		var name = document.getElementById('input-name').value;
+		firebase.database().ref("usernames/" + email).set({
+			name: name
+		});
 		firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user){
-			alert("성공적으로 가입되었습니다")
+			alert("성공적으로 가입되었습니다");
 			window.location.href = 'login.html';
 		}).catch(function(error) {
   			// Handle Errors here.
@@ -24,6 +27,8 @@ $( document ).ready(function() {
   			}
   			// ...
 		});
+
 	}
+
 });
 

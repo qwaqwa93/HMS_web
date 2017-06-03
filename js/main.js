@@ -14,6 +14,7 @@ $(document).ready(function() {
  	 	// Sign-out successful.
 		}, function(error) {
   		// An error happened.
+  			alert("이미 로그아웃 되어있습니다")
 		});
 	})
 })

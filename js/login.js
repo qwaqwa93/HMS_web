@@ -1,7 +1,12 @@
 $( document ).ready(function() { 
 
 	var signinBtn = document.getElementById('button-login');
-	
+	var signupBtn = document.getElementById('button-signup');
+
+  signupBtn.onclick = function() {
+    window.location.href = 'signup.html';
+  }
+
 	signinBtn.onclick = function() {
 		//alert('signin')
 		var email = document.getElementById('input-id').value;

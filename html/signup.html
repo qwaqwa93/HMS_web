@@ -9,20 +9,20 @@
     </div>
     <div class="login-content">
       <img class="login-logo" src="../image/login_logo.png">
-      <div class="login-form">
-        <p style="font-size: 20px; font-weight: bold;">아이디</p>
-        <input id="input-id" style="width: 90%;"">
-        <br>
-        <p style="font-size: 20px; font-weight: bold;"><br>비밀번호</p>
-        <input id="input-passwd" style="width: 90%;">
+      <div class="signup-form">
+        <p style="font-size: 20px; font-weight: bold; float: left;">아이디(이메일)</p>
+        <input id="input-id" style="margin-right: 100px; width: 40%; float: right;">
+        <p style="font-size: 20px; clear:both; font-weight: bold; float: left;">비밀번호</p>
+        <input id="input-passwd" style="margin-right: 100px; width: 40%; float: right;">
+        <p style="font-size: 20px; clear:both; font-weight: bold; float: left;">이름</p>
+        <input id="input-name" style="margin-right: 100px; width: 40%; float: right;">
       </div>
-      <div class="login-button">
-        <button id="button-login" type="button" class="btn btn-primary btn-lg btn-block" style="width: 85%;">로그인</button>
-        <button id="button-signup" type="button" class="btn btn-secondary btn-lg btn-block" style="width: 85%;">회원가입</button>
+      <div class="signup-button">
+        <button id="button-signup" type="button" class="btn btn-primary btn-lg btn-block" style="width:85%;">가입</button>
       </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="../js/login.js"></script>
+    <script src="../js/signup.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
     <script>
     var config = {

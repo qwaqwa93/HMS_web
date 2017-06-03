@@ -91,3 +91,16 @@ body {
 	height: 30%;
 	width: 100%;
 }
+
+.signup-form {
+	padding-left: 30px;
+	height: 30%;
+	width: 100%;
+}
+
+.signup-button {
+	margin-left: 30px;
+	margin-right: 30px;
+	height: 30%;
+	width: 100%;
+}
