@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<link href="../css/style.css" rel="stylesheet"/>
+	</head>
+	<body>
+    <div class="left-image">
+    <img src="../image/Login.png" style="margin-left: auto;height: 100%; width: auto;">
+    </div>
+    <div class="login-content">
+      <img class="login-logo" src="../image/login_logo.png">
+      <div class="login-form">
+        <p style="font-size: 20px; font-weight: bold;">아이디</p>
+        <input id="input-id" style="width: 90%;"">
+        <br>
+        <p style="font-size: 20px; font-weight: bold;"><br>비밀번호</p>
+        <input id="input-passwd" style="width: 90%;">
+      </div>
+      <div class="login-button">
+        <button id="button-login" type="button" class="btn btn-primary btn-lg btn-block" style="width: 85%;">로그인</button>
+        <button id="button-signup" type="button" class="btn btn-secondary btn-lg btn-block" style="width: 85%;">회원가입</button>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="../js/login.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+    <script>
+    var config = {
+          apiKey: "AIzaSyA5hQ5iolrGfRMgLkOcCsiT7raXDWj8Mio",
+          authDomain: "twicenayeonhms.firebaseapp.com",
+          databaseURL: "https://twicenayeonhms.firebaseio.com",
+          storageBucket: "gs://twicenayeonhms.appspot.com"
+    };
+    firebase.initializeApp(config);
+  </script>
+	</body>
+</html>
