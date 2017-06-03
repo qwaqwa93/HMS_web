@@ -22,18 +22,19 @@
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
-
-  <div class="dimbox showroom"> 
-    <div class="room-picture-box">
-    <img src="../image/room0.jpg" style="width: 100%; height: 100%;">
+    <div id="room-template" class="dimbox showroom" style="display: none;"> 
+      <div class="room-picture-box">
+        <img class="room-image" src="../image/room0.jpg" style="width: 100%; height: 100%;">
+      </div>
+      <div class="room-text">
+        <p class="room-name" style="font-size: 30px;">다현방</p>
+        <p style="font-size: 16px;">예약 일시 : <span class="sdate">2017-05-19</span> ~ <span class="edate">2017-05-25</span></p>
+      </div>
+      <div class="room-button">
+        <button type="button" class= "btn btn-info" id="button-reserve" style="display: table; margin: auto;"> 예약취소 </button>
+      </div>
     </div>
-    <div class="room-text">
-    <p id="room-name" style="font-size: 30px;">다현방</p>
-    <p style="font-size: 16px;">예약 일시 : <span id="sdate">2017-05-19</span> ~ <span id="edate">2017-05-25</span></p>
-    </div>
-    <div class="room-button">
-    <button type="button" class= "btn btn-info" id="button-reserve" style="display: table; margin: auto;"> 예약취소 </button>
-    </div>
+  <div id="rooms">
   </div>
 </nav>
     <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>

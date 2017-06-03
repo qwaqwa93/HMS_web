@@ -1,7 +1,11 @@
+var numRoom = 0;
+var rooms = [];
+roomnames = ["다현방", "쯔위방", "나연방", "사나방"];
 $(document).ready(function() {
 	firebase.auth().onAuthStateChanged(function(user) {
   	if (user) {
     	// User is signed in.
+		initRooms(user.email.replace(/\./gi, "^"));
   	} else {
     	// No user is signed in.
     	window.location.href = "login.html";
@@ -17,4 +21,43 @@ $(document).ready(function() {
   			alert("이미 로그아웃 되어있습니다")
 		});
 	})
+
 })
+
+function initRooms(userid) {
+	firebase.database().ref("reservation/" + userid).orderByChild('fromDate').on('value', function(snapshot) {
+		var result = snapshot.val();
+		if(snapshot.numChildren() != numRoom) {
+			numRoom = snapshot.numChildren();
+
+			clear();
+			snapshot.forEach(function(roomsnap) {
+				let room = roomsnap.val();
+				room.id = roomsnap.key;
+				rooms.push(room);
+				renderRooms(room);
+			})
+		}
+	}) 
+}
+
+function clear() {
+	rooms = [];
+	$('#rooms').children().remove();
+}
+
+function renderRooms(room) {
+	var newRoom = $('#room-template').clone();
+	newRoom.css("display", "block");
+	newRoom.attr('id', room.id);
+	newRoom.find('.room-image').attr('src', "../image/room" + room.roomNo + ".jpg");
+	newRoom.find('.room-name').html(roomnames[room.roomNo]);
+	fromDate = room.fromDate.toString();
+	toDate = room.toDate.toString();
+	var sdate = fromDate.substring(0,4) + "-" + fromDate.substring(4,6) + "-" + fromDate.substring(6);
+	var edate = toDate.substring(0,4) + "-" + toDate.substring(4,6) + "-" + toDate.substring(6);
+	newRoom.find('.sdate').html(sdate);
+	newRoom.find('.edate').html(edate);
+
+	$('#rooms').append(newRoom);
+}
