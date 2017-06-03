@@ -5,8 +5,7 @@ $(document).ready(function() {
 	firebase.auth().onAuthStateChanged(function(user) {
   	if (user) {
     	// User is signed in.
-    	userid = user.email.replace(/\./gi, "^");
-		initRooms(userid);
+		initRooms(user.email.replace(/\./gi, "^"));
   	} else {
     	// No user is signed in.
     	window.location.href = "login.html";
@@ -21,15 +20,6 @@ $(document).ready(function() {
 			window.location.href = 'login.html'
   			alert("이미 로그아웃 되어있습니다")
 		});
-	})
-
-	$('#rooms').on('click', '.btn', function(e){
-		var result = confirm("정말 취소하시겠습니까?");
-		if (result) {
-    		//Logic to delete the item
-			target = $(this).parents('.showroom').attr("id")
-			firebase.database().ref("reservation/" + userid + "/" + target).set(null);
-		}
 	})
 
 })

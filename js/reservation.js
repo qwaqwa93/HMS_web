@@ -43,7 +43,7 @@ $(document).ready(function() {
             roomNo:roomNum,
             fromDate:new_data_type[0],
             toDate:new_data_type[1]
-          });
+          })
         }
       }
   }
