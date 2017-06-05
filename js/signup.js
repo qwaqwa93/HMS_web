@@ -21,6 +21,7 @@ $( document ).ready(function() {
   				alert("6자리보다 긴 비밀번호를 입력해 주세요")
   			}
   			else {
+				alert("이미 사용중인 이메일 주소 입니다.");
   				console.log(errorCode);
   			}
   			// ...

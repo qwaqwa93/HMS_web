@@ -24,7 +24,7 @@ $(document).ready(function() {
 
   function makeReserve(roomNum){
       if((fromd.value == "") || (tod.value == "")){
-        alert("체크인 / 체크아웃 날짜를 선택하셈")
+        alert("체크인 / 체크아웃 날짜를 선택하세요")
       }
       else{
       	  if(confirm("결제 하시겠습니까?")){
@@ -41,7 +41,7 @@ $(document).ready(function() {
 					window.location.href = 'checkrsv.html'
       	  	  }
       	  	  else{
-      	  	  	alert("아쉽지만 다음 기회에~");
+      	  	  	alert("이미 예약이 완료되었습니다. 아쉽지만 다음 기회에~");
       	  	  }
 
       	  }
@@ -95,7 +95,7 @@ $(document).ready(function() {
           var to_date_picked = to_parts[2] + to_parts[0] + to_parts[1]
 
           if(f_dat > t_dat){
-            alert("체크아웃 날짜가 체크인 날짜보다는 뒤여야지 않겠니?");
+            alert("체크아웃 날짜가 체크인 날짜보다 빠를수는 없습니다.");
             return false;
           }
           else{
