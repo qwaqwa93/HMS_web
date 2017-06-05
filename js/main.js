@@ -4,6 +4,7 @@ $(document).ready(function() {
     	// User is signed in.
   	} else {
     	// No user is signed in.
+	alert("비정상적인 접근입니다");
     	window.location.href = "login.html";
   	}});
 
@@ -20,6 +21,7 @@ $(document).ready(function() {
 	$('#button-logout').click(function(e) {
 		firebase.auth().signOut().then(function() {
  	 	// Sign-out successful.
+		alert("로그아웃 되었습니다");
 		window.location.href = 'login.html'
 		}, function(error) {
   		// An error happened.
