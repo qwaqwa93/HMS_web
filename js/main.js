@@ -4,6 +4,7 @@ $(document).ready(function() {
     	// User is signed in.
     	firebase.database().ref("security/" + user.email.replace(/\./gi, "^")).once('value').then( function(snapshot) {
     		if (snapshot.val().count > 4) {
+				removeEvent();
     			firebase.auth().signOut().then(function() {
  	 				// Sign-out successful.
     				alert("비밀번호 입력 횟수를 초과했습니다\n관리자에게 문의하세요");
@@ -12,7 +13,7 @@ $(document).ready(function() {
     		}
     		else {
     			var updates = {};
-                updates["security/" + email.replace(/\./gi, "^") + "/count"] = 0;
+                updates["security/" + user.email.replace(/\./gi, "^") + "/count"] = 0;
                 firebase.database().ref().update(updates);
     		}
     	})
