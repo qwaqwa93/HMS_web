@@ -2,7 +2,7 @@ var numRoom = 0;
 var rooms = [];
 roomnames = ["나연방", "사나방","다현방", "쯔위방"];
 $(document).ready(function() {
-	firebase.auth().onAuthStateChanged(function(user) {
+	removeEvent = firebase.auth().onAuthStateChanged(function(user) {
   	if (user) {
     	// User is signed in.
     	userid = user.email.replace(/\./gi, "^");
@@ -14,6 +14,7 @@ $(document).ready(function() {
   	}});
 
 	$('#button-logout').click(function(e) {
+		removeEvent();
 		firebase.auth().signOut().then(function() {
  	 	// Sign-out successful.
 		alert("로그아웃 되었습니다");

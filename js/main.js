@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	firebase.auth().onAuthStateChanged(function(user) {
+	removeEvent = firebase.auth().onAuthStateChanged(function(user) {
   	if (user) {
     	// User is signed in.
   	} else {
@@ -19,6 +19,7 @@ $(document).ready(function() {
 	});
 
 	$('#button-logout').click(function(e) {
+		removeEvent();
 		firebase.auth().signOut().then(function() {
  	 	// Sign-out successful.
 		alert("로그아웃 되었습니다");

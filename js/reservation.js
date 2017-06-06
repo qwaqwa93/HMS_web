@@ -1,10 +1,12 @@
 $(document).ready(function() {
   var userid = "!";
-  firebase.auth().onAuthStateChanged(function(user) {
+  removeEvent = firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     userid = user.email;
   } else {
     // No user is signed in.
+    alert("비정상적인 접근입니다");
+    window.location.href = "login.html";
   }
 });
   var fromd = document.getElementById('from-date');
@@ -67,16 +69,6 @@ $(document).ready(function() {
     reserveBtn3.onclick = function() {
       makeReserve("3");
     }
-
-    
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      // User is signed in.
-    } else {
-      // No user is signed in.
-      alert("비정상적인 접근입니다");
-      window.location.href = "login.html";
-    }});
 
     var f_date = "";
     var t_date = "";
@@ -153,6 +145,7 @@ $(document).ready(function() {
         $('#from-date').datepicker('setEndDate', maxDate);
     });
   $('#button-logout').click(function(e) {
+    removeEvent();
     firebase.auth().signOut().then(function() {
     // Sign-out successful.
     alert("로그아웃 되었습니다");
