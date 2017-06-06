@@ -66,10 +66,30 @@ function renderRooms(room) {
 	newRoom.find('.room-name').html(roomnames[room.roomNo]);
 	fromDate = room.fromDate.toString();
 	toDate = room.toDate.toString();
+	if (toDate.localeCompare(today()) < 0) {
+		newRoom.append($('<div/>', {
+        	class: 'blur'
+    	}));
+		newRoom.find('.btn').attr('disabled', true);
+	}
 	var sdate = fromDate.substring(0,4) + "-" + fromDate.substring(4,6) + "-" + fromDate.substring(6);
 	var edate = toDate.substring(0,4) + "-" + toDate.substring(4,6) + "-" + toDate.substring(6);
 	newRoom.find('.sdate').html(sdate);
 	newRoom.find('.edate').html(edate);
 
 	$('#rooms').append(newRoom);
+}
+
+function today(){
+   
+    var date = new Date();
+   
+    var year  = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day   = date.getDate();
+    
+    if (("" + month).length == 1) { month = "0" + month; }
+    if (("" + day).length   == 1) { day   = "0" + day;   }
+       
+	return "" + year + month + day;  
 }
