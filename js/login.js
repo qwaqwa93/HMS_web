@@ -3,9 +3,9 @@ $( document ).ready(function() {
 	var signinBtn = document.getElementById('button-login');
 	var signupBtn = document.getElementById('button-signup');
 
-  signupBtn.onclick = function() {
-    window.location.href = 'signup.html';
-  }
+  	signupBtn.onclick = function() {
+    		window.location.href = 'signup.html';
+  	}
 
 	signinBtn.onclick = function() {
 		//alert('signin')
@@ -19,23 +19,24 @@ $( document ).ready(function() {
   			if (errorCode == 'auth/invalid-email') {
   				alert("Enter a valid email");
   			}
-        else if(errorCode) {
-          alert("Invalid email or password")
-        }
+       			else if(errorCode == 'auth/wrong-password') {
+          			alert("Wrong password")
+        		}
+			else{
+				console.log(errorCode);
+			}
+
   			// ...
 		});
-		
+  	firebase.auth().onAuthStateChanged(function(user) {
+      		if (user) {
+        		// User is signed in.
+        		window.location.href = 'main.html';
+      		} else {
+        		// No user is signed in.
+      		}
+  	});
 	}
-
-  firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        // User is signed in.
-        window.location.href = 'main.html';
-
-      } else {
-        // No user is signed in.
-      }
-  });
 
   $('#input-passwd').keyup(function(e) {
     if(e.keyCode == 13) {
