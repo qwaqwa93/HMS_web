@@ -32,6 +32,15 @@
           storageBucket: "gs://twicenayeonhms.appspot.com"
     };
     firebase.initializeApp(config);
+
+    var admin = require("firebase-admin");
+
+    var serviceAccount = require("../../twicenayeonhms.json");
+
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount),
+      databaseURL: "https://twicenayeonhms.firebaseio.com"
+    });
   </script>
 	</body>
 </html>

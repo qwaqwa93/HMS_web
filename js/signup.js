@@ -1,15 +1,29 @@
 $( document ).ready(function() { 
-
 	var signupBtn = document.getElementById('button-signup');
 	var cancelBtn = document.getElementById('button-cancel');
+	var theUser;
 
 	signupBtn.onclick = function() {
 		var email = document.getElementById('input-id').value;
 		var password = document.getElementById('input-passwd').value;
 		var name = document.getElementById('input-name').value;
 		firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user){
-			alert("성공적으로 가입되었습니다");
-			window.location.href = 'login.html';
+			firebase.database().ref("security/" + email.replace(/\./gi, "^")).on('value', function(snapshot) {
+				if(snapshot) {
+					alert("가입되었습니다 \n확인을 누르시면 곧 로그인 페이지로 이동합니다");
+					firebase.auth().signOut();
+					setTimeout(function() {
+						window.location.href = 'login.html';
+					}, 2000);
+				}
+			});
+			firebase.database().ref("security/" + email.replace(/\./gi, "^")).set({
+				count: 0,
+				uid: user.uid
+			});
+			//alert("성공적으로 가입되었습니다");
+			//window.location.href = 'login.html';
+			//theUser = user;
 		}).catch(function(error) {
   			// Handle Errors here.
   			var errorCode = error.code;
@@ -25,8 +39,14 @@ $( document ).ready(function() {
   				console.log(errorCode);
   			}
   			// ...
-		});
 
+		});
+		/*firebase.database().ref("security/" + email.replace(/\./gi, "^")).set({
+				count: 0,
+				uid: theUser.uid
+			});
+			alert("성공적으로 가입되었습니다");*/
+		//window.location.href = 'login.html';
 	}
 
 	cancelBtn.onclick = function() {
