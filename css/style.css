@@ -104,3 +104,7 @@ body {
 	height: 30%;
 	width: 100%;
 }
+
+.blur {
+    background-color: rgba(255, 20, 147, 0.3);
+}
