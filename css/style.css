@@ -117,3 +117,8 @@ body {
   opacity: 0.4;
   background-color: black;
 }
+
+.disabled {
+	background-color: red;
+	opacity: 0.3;
+}

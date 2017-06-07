@@ -123,10 +123,18 @@ $(document).ready(function() {
           				}
           			});
           		});
+              for(var i=0; i<4; i++) {
+                if(!room_state[i]) {
+                  $('#button-reserve' + i).attr("disabled", true);
+                  $('#button-reserve' + i).css("background-color", "red");
+                  $('#button-reserve' + i).css("opacity", 0.3);
+                  $('#button-reserve' + i).html("매진");
+                }
+              }/*
 			  $('#button-reserve0').attr("disabled",!room_state[0]);
 			  $('#button-reserve1').attr("disabled",!room_state[1]);
 			  $('#button-reserve2').attr("disabled",!room_state[2]);
-			  $('#button-reserve3').attr("disabled",!room_state[3]);
+			  $('#button-reserve3').attr("disabled",!room_state[3]);*/
           	});
 
 
