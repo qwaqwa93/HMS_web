@@ -130,11 +130,13 @@ $(document).ready(function() {
                   $('#button-reserve' + i).css("opacity", 0.3);
                   $('#button-reserve' + i).html("매진");
                 }
-              }/*
-			  $('#button-reserve0').attr("disabled",!room_state[0]);
-			  $('#button-reserve1').attr("disabled",!room_state[1]);
-			  $('#button-reserve2').attr("disabled",!room_state[2]);
-			  $('#button-reserve3').attr("disabled",!room_state[3]);*/
+                else {
+                  $('#button-reserve' + i).attr("disabled", false);
+                  $('#button-reserve' + i).css("background-color", "#5bc0de");
+                  $('#button-reserve' + i).css("opacity", 1);
+                  $('#button-reserve' + i).html("예약");
+                }
+              }
           	});
 
 
